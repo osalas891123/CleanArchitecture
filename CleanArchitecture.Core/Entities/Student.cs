@@ -8,11 +8,6 @@ namespace CleanArchitecture.Core.Entities
     public class Student
     {
 
-        public Student()
-        {
-            this.Courses = new HashSet<Course>();
-        }
-
         [Key]
         public int Id { get; set; }
 
