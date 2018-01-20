@@ -26,7 +26,7 @@ namespace CleanArchitecture.Core.Entities
         [Range(1,9)]
         public int Grade { get; set; }
 
-        public ICollection<Course> Courses { get; set; }
+        public ICollection<CourseStudent> Courses { get; set; }
 
     }
 }

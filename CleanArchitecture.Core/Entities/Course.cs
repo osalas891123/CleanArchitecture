@@ -17,6 +17,6 @@ namespace CleanArchitecture.Core.Entities
         [Required]
         public int Credits { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<CourseStudent> Students { get; set; }
     }
 }
