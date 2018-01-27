@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CleanArchitecture.Core.Repositories;
+using CleanArchitecture.Core.Services;
+using CleanArchitecture.Infrastructure.Repositories;
+using CleanArchitecture.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +31,9 @@ namespace CleanArchitecture.Api
             services.AddDbContext<Infrastructure.Data.Context>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("CleanArchitectureConnection"))
             );
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IStudentService, StudentService>();
 
             services.AddMvc();
         }
