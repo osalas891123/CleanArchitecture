@@ -8,6 +8,7 @@ namespace CleanArchitecture.Core.Services
     public interface IStudentService
     {
         void Add(Student student);
+        Student GetById(int id);
         List<Student> GetAllStudents();
     }
 }

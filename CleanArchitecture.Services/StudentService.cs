@@ -20,6 +20,11 @@ namespace CleanArchitecture.Services
             throw new NotImplementedException();
         }
 
+        public Student GetById(int id)
+        {
+            return studentRepository.GetById(id);
+        }
+
         public List<Student> GetAllStudents()
         {
             //var list = new List<Student>();
