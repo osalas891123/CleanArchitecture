@@ -27,7 +27,6 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public void Add(T entity)
         {
             db.Add(entity);
-            //context.SaveChanges();
         }
 
         public List<T> GetBy(Expression<Func<T, bool>> predicate)
@@ -37,17 +36,20 @@ namespace CleanArchitecture.Infrastructure.Repositories
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return db.Find(id);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = db.Find(id);
+            if (entity == null)
+              throw new Exception($"User Id {id} Not Found");
+            db.Remove(entity);
         }        
 
         public void Update(T Entity)
         {
-            throw new NotImplementedException();
+            context.Entry(Entity).State = EntityState.Modified;            
         }
         #endregion
 
@@ -55,28 +57,32 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public async Task AddAsync(T entity)
         {
             await db.AddAsync(entity);
-            //await context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await db.FindAsync(id);
+            if (entity == null)
+              throw new Exception($"User Id {id} Not Found");
+            db.Remove(entity);
         }
 
-        public Task<List<T>> GetByAsync(Expression<Func<T, bool>> predicate)
+        public async Task<List<T>> GetByAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await db.Where(predicate).ToListAsync();
         }
 
-        public Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await db.FindAsync(id);
         }
 
-        public Task UpdateAsync(T Entity)
+        public async Task UpdateAsync(T Entity)
         {
-            throw new NotImplementedException();
+          db.Attach(Entity);
+          context.Entry(Entity).State = EntityState.Modified;
+          await  Task.FromResult(0);
         }
-        #endregion
-    }
+    #endregion
+  }
 }

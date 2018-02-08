@@ -3,6 +3,7 @@ using CleanArchitecture.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Repositories
 {
@@ -36,6 +37,11 @@ namespace CleanArchitecture.Infrastructure.Repositories
       public void Commit()
       {
           context.SaveChanges();
+      }
+
+      public async Task CommitAsync()
+      {
+        await context.SaveChangesAsync();
       }
 
       public void Dispose()

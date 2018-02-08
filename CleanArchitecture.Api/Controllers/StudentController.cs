@@ -25,5 +25,12 @@ namespace CleanArchitecture.Api.Controllers
         {
             throw new NotImplementedException();
         }
+
+        [HttpGet("id/{id:int}")]
+        public IActionResult GetById(int id)
+        {
+            var student = studentService.GetById(id);
+            return Ok(student);
+        }
     }
 }
