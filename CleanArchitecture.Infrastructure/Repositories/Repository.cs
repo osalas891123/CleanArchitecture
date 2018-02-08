@@ -27,7 +27,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public void Add(T entity)
         {
             db.Add(entity);
-            context.SaveChanges();
+            //context.SaveChanges();
         }
 
         public List<T> GetBy(Expression<Func<T, bool>> predicate)
@@ -55,7 +55,7 @@ namespace CleanArchitecture.Infrastructure.Repositories
         public async Task AddAsync(T entity)
         {
             await db.AddAsync(entity);
-            await context.SaveChangesAsync();
+            //await context.SaveChangesAsync();
         }
 
         public Task DeleteAsync(int id)

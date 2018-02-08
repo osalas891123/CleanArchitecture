@@ -34,6 +34,7 @@ namespace CleanArchitecture.Api
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IStudentService, StudentService>();
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc();
         }

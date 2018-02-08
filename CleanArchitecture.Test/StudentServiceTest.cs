@@ -9,7 +9,8 @@ namespace CleanArchitecture.Test
   public class StudentServiceTest
     {
         private Mock<IRepository<Student>> studentRepository;
-        private StudentService alumnoService;
+        private StudentService studentService;
+        //private readonly IUnitOfWork unit;
         public StudentServiceTest()
         {
             studentRepository = new Mock<IRepository<Student>>();
@@ -20,17 +21,17 @@ namespace CleanArchitecture.Test
         {
             var repo = studentRepository.Object;
             var alumno = new Student() { Id = 1 };
-
+            var unit = new Mock<IUnitOfWork>();
             //Arrange
             studentRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(alumno);
-
+            unit.Setup(x => x.Student.GetById(It.IsAny<int>())).Returns(alumno);
             //Act
-            alumnoService = new StudentService(studentRepository.Object);
-            var result = alumnoService.GetById(1);
+            studentService = new StudentService(unit.Object);
+            var result = studentService.GetById(1);
 
             //Assert
             Assert.NotNull(result);
-            studentRepository.Verify(x => x.GetById(It.IsAny<int>()), Times.Once());
-        }
+            unit.Verify(x => x.Student.GetById(It.IsAny<int>()), Times.Once());
+    }
   }
 }

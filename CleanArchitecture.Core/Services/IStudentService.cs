@@ -9,6 +9,5 @@ namespace CleanArchitecture.Core.Services
     {
         void Add(Student student);
         Student GetById(int id);
-        List<Student> GetAllStudents();
     }
 }

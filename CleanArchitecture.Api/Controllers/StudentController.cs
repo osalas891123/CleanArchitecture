@@ -23,15 +23,7 @@ namespace CleanArchitecture.Api.Controllers
         [Route("All")]
         public IActionResult GetAllStudents()
         {
-            try
-            {
-                var response = studentService.GetAllStudents();
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return NoContent();
-            }
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using CleanArchitecture.Core.Entities;
 using CleanArchitecture.Core.Repositories;
 using CleanArchitecture.Core.Services;
+using CleanArchitecture.Infrastructure.Data;
+using CleanArchitecture.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,28 +11,21 @@ namespace CleanArchitecture.Services
 {
     public class StudentService : IStudentService
     {
-        private IRepository<Student> studentRepository;
-        public StudentService(IRepository<Student> studentRepository)
+        private readonly IUnitOfWork unit;
+        public StudentService(IUnitOfWork unit)
         {
-            this.studentRepository = studentRepository;
-        }
+            this.unit = unit;
+        }        
 
         public void Add(Student student)
-        {
-            throw new NotImplementedException();
+        {            
+            unit.Student.Add(student);
+            unit.Commit();
         }
 
         public Student GetById(int id)
         {
-            return studentRepository.GetById(id);
-        }
-
-        public List<Student> GetAllStudents()
-        {
-            //var list = new List<Student>();
-            //list.Add(new Student() { Name = "Jose", LastName = "Perez" });
-            //return list;
-            return studentRepository.GetBy(x => x.Id == 1);
-        }
+            return unit.Student.GetById(id);
+        }        
     }
 }
