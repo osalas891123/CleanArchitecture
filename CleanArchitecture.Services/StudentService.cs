@@ -6,6 +6,7 @@ using CleanArchitecture.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Services
 {
@@ -17,15 +18,16 @@ namespace CleanArchitecture.Services
             this.unit = unit;
         }        
 
-        public void Add(Student student)
+        public async Task AddAsync(Student student)
         {            
-            unit.Student.Add(student);
-            unit.Commit();
+            await unit.Student.AddAsync(student);
+            await unit.CommitAsync();
         }
 
-        public Student GetById(int id)
+        public async Task<Student> GetByIdAsync(int id)
         {
-            return unit.Student.GetById(id);
+            var student = await unit.Student.GetByIdAsync(id);
+            return student;
         }        
     }
 }

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Core.Services
 {
     public interface IStudentService
     {
-        void Add(Student student);
-        Student GetById(int id);
+        Task AddAsync(Student student);
+        Task<Student> GetByIdAsync(int id);
     }
 }

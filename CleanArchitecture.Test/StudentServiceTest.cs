@@ -8,12 +8,12 @@ namespace CleanArchitecture.Test
 {
   public class StudentServiceTest
     {
-        private Mock<IRepository<Student>> studentRepository;
+        private Mock<IRepositoryAsync<Student>> studentRepository;
         private StudentService studentService;
         //private readonly IUnitOfWork unit;
         public StudentServiceTest()
         {
-            studentRepository = new Mock<IRepository<Student>>();
+            studentRepository = new Mock<IRepositoryAsync<Student>>();
         }
 
         [Fact]
@@ -23,15 +23,15 @@ namespace CleanArchitecture.Test
             var alumno = new Student() { Id = 1 };
             var unit = new Mock<IUnitOfWork>();
             //Arrange
-            studentRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns(alumno);
-            unit.Setup(x => x.Student.GetById(It.IsAny<int>())).Returns(alumno);
+            studentRepository.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(alumno);
+            unit.Setup(x => x.Student.GetByIdAsync(It.IsAny<int>())).ReturnsAsync(alumno);
             //Act
             studentService = new StudentService(unit.Object);
-            var result = studentService.GetById(1);
+            var result = studentService.GetByIdAsync(1);
 
             //Assert
             Assert.NotNull(result);
-            unit.Verify(x => x.Student.GetById(It.IsAny<int>()), Times.Once());
+            unit.Verify(x => x.Student.GetByIdAsync(It.IsAny<int>()), Times.Once());
     }
   }
 }
