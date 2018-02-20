@@ -27,9 +27,9 @@ namespace CleanArchitecture.Api.Controllers
         }
 
         [HttpGet("id/{id:int}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var student = studentService.GetById(id);
+            var student = await studentService.GetByIdAsync(id);
             return Ok(student);
         }
     }
