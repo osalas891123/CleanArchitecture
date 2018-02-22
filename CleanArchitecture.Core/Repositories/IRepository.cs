@@ -9,7 +9,8 @@ namespace CleanArchitecture.Core.Repositories
     {
         void Add(T entity);
         T GetById(int id);
-        List<T> GetBy(Expression<Func<T, bool>> predicate);
+        List<T> GetAll();
+        //List<T> GetBy(Expression<Func<T, bool>> predicate);
         void Update(T entity);
         void Delete(int id);
     }

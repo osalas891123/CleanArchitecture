@@ -21,9 +21,10 @@ namespace CleanArchitecture.Api.Controllers
 
         [HttpGet]
         [Route("All")]
-        public IActionResult GetAllStudents()
+        public async Task<IActionResult> GetAllStudents()
         {
-            throw new NotImplementedException();
+            var students = await studentService.GetAllAsync();
+            return Ok(students);
         }
 
         [HttpGet("id/{id:int}")]

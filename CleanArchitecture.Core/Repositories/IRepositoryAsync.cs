@@ -10,7 +10,8 @@ namespace CleanArchitecture.Core.Repositories
     {
         Task AddAsync(T entity);
         Task<T> GetByIdAsync(int id);
-        Task<List<T>> GetByAsync(Expression<Func<T, bool>> predicate);
+        Task<List<T>> GetAllAsync();
+        //Task<List<T>> GetByAsync(Expression<Func<T, bool>> predicate);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id);
     }

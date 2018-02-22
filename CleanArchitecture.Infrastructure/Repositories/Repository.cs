@@ -29,9 +29,9 @@ namespace CleanArchitecture.Infrastructure.Repositories
             db.Add(entity);
         }
 
-        public List<T> GetBy(Expression<Func<T, bool>> predicate)
+        public List<T> GetAll()
         {
-            return db.Where(predicate).ToList();
+            return db.ToList();
         }
 
         public T GetById(int id)
@@ -67,9 +67,9 @@ namespace CleanArchitecture.Infrastructure.Repositories
             db.Remove(entity);
         }
 
-        public async Task<List<T>> GetByAsync(Expression<Func<T, bool>> predicate)
+        public async Task<List<T>> GetAllAsync()
         {
-            return await db.Where(predicate).ToListAsync();
+            return await db.ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(int id)

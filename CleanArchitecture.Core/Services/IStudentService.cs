@@ -10,5 +10,6 @@ namespace CleanArchitecture.Core.Services
     {
         Task AddAsync(Student student);
         Task<Student> GetByIdAsync(int id);
+        Task<List<Student>> GetAllAsync();
     }
 }

@@ -24,10 +24,15 @@ namespace CleanArchitecture.Services
             await unit.CommitAsync();
         }
 
-        public async Task<Student> GetByIdAsync(int id)
+        public Task<List<Student>> GetAllAsync()
         {
-            var student = await unit.Student.GetByIdAsync(id);
-            return student;
-        }        
-    }
+            return unit.Student.GetAllAsync();
+        }
+
+        public async Task<Student> GetByIdAsync(int id)
+            {
+                var student = await unit.Student.GetByIdAsync(id);
+                return student;
+            }        
+        }
 }
